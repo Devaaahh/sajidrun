@@ -43,10 +43,11 @@ def load_env():
 
 
 load_env()
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "")
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://wrmrgwygcfjithsofflu.supabase.co").rstrip("/")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY", "sb_publishable_IkKE2RLqT2yRoF2wrqV_JQ_4ZQcAoVF")
 SUPABASE_TABLE = os.environ.get("SUPABASE_TABLE", "scores")
-
+[tool.vercel]
+entrypoint = "my_package.api:app"
 
 # ---------------------------------------------------------------- supabase
 def supabase_enabled() -> bool:
