@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Sajid Run</title>
+  <meta name="description" content="Can he escape from Pranav and Ashwin?">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-left">
+      <div class="pill"><span class="ico">🏃</span><span id="hud-score">0</span></div>
+      <div class="pill small"><span id="hud-dist">0</span> m</div>
+    </div>
+    <div class="hud-right">
+      <div class="pill coin"><span class="ico">🪙</span><span id="hud-coins">0</span></div>
+      <button id="btn-pause" class="icon-btn" title="Pause (P)">⏸</button>
+      <button id="btn-mute" class="icon-btn" title="Mute (M)">🔊</button>
+    </div>
+    <div id="power" class="hidden">🧲 <span>Magnet</span><div class="bar"><i></i></div></div>
+    <div id="danger" class="hidden">⚠ PRANAV &amp; ASHWIN ARE RIGHT BEHIND YOU!</div>
+    <div id="toast"></div>
+  </div>
+
+  <!-- Menu -->
+  <section id="menu" class="screen">
+    <div class="card">
+      <div class="faces">
+        <img src="assets/pranav.png" alt="Pranav" class="face chaser">
+        <img src="assets/runner.png" alt="Sajid" class="hero">
+        <img src="assets/ashwin.png" alt="Ashwin" class="face chaser">
+      </div>
+      <h1>SAJID RUN</h1>
+      <p class="tag">Can he escape from <b>Pranav</b> and <b>Ashwin</b>?</p>
+      <button id="btn-play" class="big-btn">▶ PLAY</button>
+      <div class="controls">
+        <div><kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> change lane</div>
+        <div><kbd>↑</kbd> / <kbd>W</kbd> / <kbd>Space</kbd> jump</div>
+        <div><kbd>↓</kbd> / <kbd>S</kbd> slide</div>
+        <div class="touch">On phone: swipe ← → ↑ ↓</div>
+      </div>
+      <button id="btn-board" class="link-btn">🏆 High scores</button>
+    </div>
+  </section>
+
+  <!-- Pause -->
+  <section id="pause" class="screen hidden">
+    <div class="card">
+      <h2>PAUSED</h2>
+      <button id="btn-resume" class="big-btn">▶ RESUME</button>
+      <button id="btn-quit" class="link-btn">Main menu</button>
+    </div>
+  </section>
+
+  <!-- Game over -->
+  <section id="over" class="screen hidden">
+    <div class="card">
+      <div class="faces small">
+        <img src="assets/pranav.png" alt="Pranav" class="face">
+        <img src="assets/ashwin.png" alt="Ashwin" class="face">
+      </div>
+      <h2>CAUGHT!</h2>
+      <p class="tag">Pranav &amp; Ashwin got Sajid.</p>
+      <div class="stats">
+        <div><span>Score</span><b id="over-score">0</b></div>
+        <div><span>Coins</span><b id="over-coins">0</b></div>
+        <div><span>Distance</span><b id="over-dist">0</b></div>
+      </div>
+      <form id="save-form">
+        <input id="name" maxlength="16" placeholder="Your name" autocomplete="off" required>
+        <button type="submit" class="mid-btn">Save score</button>
+      </form>
+      <p id="save-msg"></p>
+      <button id="btn-again" class="big-btn">↻ RUN AGAIN</button>
+      <button id="btn-board2" class="link-btn">🏆 High scores</button>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
+  <section id="board" class="screen hidden">
+    <div class="card">
+      <h2>🏆 HIGH SCORES</h2>
+      <ol id="board-list"><li class="muted">Loading…</li></ol>
+      <a id="xlsx-link" href="/api/scores.xlsx" class="link-btn">⬇ Download Excel</a>
+      <button id="btn-board-close" class="mid-btn">Back</button>
+    </div>
+  </section>
+
+  <div id="loading" class="screen"><div class="spinner"></div><p>Building the imaginary college…</p></div>
+
+  <audio id="snd-start" src="assets/start.mp3" preload="auto"></audio>
+  <audio id="snd-run" src="assets/run.mp3" preload="auto"></audio>
+  <audio id="snd-caught" src="assets/caught.mp3" preload="auto"></audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
